@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Jquery carousel</title>
+  <link rel="stylesheet" href="style.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+</head>
+<body>
+
+<div id="carousel">
+
+	<div class="imageView">
+
+		<ul>
+		<div id="next" class="styleButton glyphicon glyphicon-triangle-right"></div>
+		<li><img id="image0" src="http://maximumwallhd.com/wp-content/uploads/2015/07/fonds-ecran-papillon-13-1024x640.jpg" alt="" width="700" height="400" /></li>
+		<li><img id="image1" src="http://maximumwallhd.com/wp-content/uploads/2015/07/fonds-ecran-papillon-15-1024x641.jpg" alt="" width="700" height="400" /></li>
+		<li><img id="image2" src="http://maximumwallhd.com/wp-content/uploads/2015/07/fonds-ecran-papillon-19-1024x768.jpg" alt="" width="700" height="400" /></li>
+   		<li><img id="image3" src="http://maximumwallhd.com/wp-content/uploads/2015/07/fonds-ecran-papillon-8.jpg" alt="" width="700" height="400" /></li>
+		<div id="preview" class="styleButton glyphicon glyphicon-triangle-left"></div>
+		</ul>
+
+    </div>
+
+
+	<label><input type="checkbox" name="sildeMe">Slide me</label>
+ </div>
+
+</body>
+
+
+<style type="text/css">
+
+#preview{
+	position: absolute;
+	left: 10px;
+
+}
+
+.styleButton{
+	color: red;
+	margin-top: 190px;
+  font-size: 40px;
+}
+
+
+
+#next{
+	position: absolute;
+	right: 10px;
+}
+
+
+
+.imageView{
+
+    width: 700px;
+   	height: 400px;
+   	overflow: hidden;
+   	border: 3px solid #F2F2F2;
+	border: solid;
+    overflow: hidden;
+    position: center;
+    margin: 0 auto;
+}
+
+
+.imageView ul {
+   width: 300%;
+   height: 200px;
+   padding:0;
+   list-style: none;
+   display: flex;
+   flex-direction: row;
+}
+
+.imageView li {
+   float: center;
+}
+#carousel{
+	width: 700px;
+   	height: 400px;
+	margin: 150px auto;
+	position: relative;
+
+}
+
+
+label{
+float: center;
+}
+
+
+</style>
+
+
+<script type="text/javascript">
+
+$('#preview').click(function preview(){
+		$(".imageView ul").css({marginLeft:-700}).find("li:first").before($(".imageView ul").find("li:last"));
+		$(".imageView ul").animate({marginLeft: 0},800);
+									});
+
+$('#next').click(function next(){
+		$(".imageView ul").css({marginLeft: 0});
+		$(".imageView ul").animate({marginLeft: -700},800, function(){
+		$(".imageView ul").css({marginLeft:0}).find("li:last").after($(".imageView ul").find("li:first"));
+																	});
+								});
+
+
+setInterval(function(){
+
+if($('input[name=sildeMe]').is(':checked')){
+    $(".imageView ul").css({marginLeft: 0});
+		$(".imageView ul").animate({marginLeft: -700},800, function(){
+		$(".imageView ul").css({marginLeft:0}).find("li:last").after($(".imageView ul").find("li:first"));
+																	});
+											}
+
+
+}, 3000);
+
+
+
+</script>
+
+
+</html>
